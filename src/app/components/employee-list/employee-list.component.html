@@ -1,0 +1,72 @@
+<div class="table-layout">
+  <div>
+    <div>
+      <button mat-raised-button color="primary" type="submit" (click)="addEmployee()">Add Employee</button>
+      <button mat-raised-button color="primary" type="submit" (click)="showImage()" style="margin-left: 20px;">Show</button>
+      <mat-form-field style="width: 15%; margin-left: 50px;">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="res-table-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <!-- Employee Code Column -->
+      <ng-container matColumnDef="empCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Employee Code </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.empCode}} </mat-cell>
+      </ng-container>
+
+      <!-- Employee First Name Column -->
+      <ng-container matColumnDef="empFirstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.empFirstName}} </mat-cell>
+      </ng-container>
+
+      <!-- Employee Last Name Column -->
+      <ng-container matColumnDef="empLastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.empLastName}} </mat-cell>
+      </ng-container>
+
+      <!-- Employee HR Right Column -->
+      <ng-container matColumnDef="empHrRight">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> HR Right </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.empHrRight}} </mat-cell>
+      </ng-container>
+
+      <!-- Employee Timesheet Right Column -->
+      <ng-container matColumnDef="empTimesheetRight">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Timesheet Right </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.empTimesheetRight}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <a class="action-btn" (click)="updateEmployee(row)">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a class="action-btn" (click)="releaseEmployee(row)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Header Details for the Table Columns -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <!-- Loader will be shown while data is loading in background -->
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+
+    <!-- Pagination to control number of records to show/hide per page -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.table-layout {
+    width: 94%;
+    max-height:  500px;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-cell {
+    font-weight: bold;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-header-row {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+}

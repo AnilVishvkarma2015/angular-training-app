@@ -1,0 +1,62 @@
+<div class="table-layout">
+  <form [formGroup]="employeeForm" novalidate>
+    <div fxLayout="row">
+      <div fxFlex="5%"></div>
+      <div fxFlex="40%">
+        <img src="assets/employee.png">
+      </div>
+      <div fxFlex="10%"></div>
+      <div fxFlex="35%">
+        <div fxLayout="column">
+          <h3>{{empformlabel}}</h3>
+          <hr>
+          <mat-form-field>
+            <input matInput placeholder="Employee Code" formControlName="empCode">
+            <mat-error *ngIf="isFieldInvalid('empCode')">
+              Please enter employee code.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="empFirstName">
+            <mat-error *ngIf="isFieldInvalid('empFirstName')">
+              Please enter first name.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="empLastName">
+            <mat-error *ngIf="isFieldInvalid('empLastName')">
+              Please enter last name.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="HR Right" formControlName="empHrRight">
+              <mat-option *ngFor="let right of hrRights" [value]="right">
+                {{ right }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="isFieldInvalid('empHrRight')">
+              Please select HR right.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Timesheet Right" formControlName="empTimesheetRight">
+              <mat-option *ngFor="let right of tsRights" [value]="right">
+                {{ right }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="isFieldInvalid('empTimesheetRight')">
+              Please select timesheet right.
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <div>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid" *ngIf="btnvisibility" (click)="onSubmit()">Save</button>  
+            <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid" *ngIf="!btnvisibility" (click)="onUpdate()">Update</button>  
+            <button mat-raised-button style="margin-left: 15px;" type="reset">Reset</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri');
+
+
+body {
+    margin: 0;
+    background-color: #F0F8FF;
+    height: 100%;
+    min-height:37em; background-size:cover; width:auto;
+}
+
+.success-snackbar {
+    background-color: #007E33;
+}
+
+.warning-snackbar {
+    background-color: #FF8800;
+}
+
+.error-snackbar {
+    background-color: #CC0000;
+}
