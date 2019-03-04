@@ -14,7 +14,7 @@ export class EmployeeListComponent {
   displayedColumns = ['empCode', 'empFirstName', 'empLastName', 'empHrRight', 'empTimesheetRight', 'actions'];
   dataSource: MatTableDataSource<IEmployee>;
   Employees: IEmployee[] = [];
-  isLoading = false;
+  isLoading = true;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -53,7 +53,11 @@ export class EmployeeListComponent {
   }
 
   releaseEmployee(employee: IEmployee) {
-    this.employeeService.releaseEmployee(employee);
+    this.employeeService.releaseEmployee(employee)
+      .add(() => {
+        this.loadEmployees();
+      });
+
   }
 
   showImage() {
